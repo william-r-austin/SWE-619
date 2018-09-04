@@ -79,6 +79,30 @@ public class FindPrimeFactorTest {
 		Assert.assertEquals(6, result); 
 	}
 	
+	@Test
+	public void testDifferentSizeLists1() {
+		List<Integer> x = Arrays.asList(1);
+		List<Integer> y = Arrays.asList(3, 5, 4, 6, 0, -2, 3);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(-1, result); 
+	}
+	
+	@Test
+	public void testDifferentSizeLists2() {
+		List<Integer> x = Arrays.asList(3, 5, 10, 6, 0, -2, 3);
+		List<Integer> y = Arrays.asList(2, 3);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(-1, result); 
+	}
+	
+	@Test
+	public void testNullElements() {
+		List<Integer> x = Arrays.asList(3, null, 10, 6, 35, 28, 3);
+		List<Integer> y = Arrays.asList(2, 0, null, 4, 5, 2);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(4, result); 
+	}	
+	
 	@Test(expected = NullPointerException.class)
 	public void testNullPrime() {
 		FindPrimeFactor.isPrime(null);
