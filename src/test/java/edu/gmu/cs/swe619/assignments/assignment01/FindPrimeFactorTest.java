@@ -1,4 +1,4 @@
-package edu.gmu.cd.swe619.assignments.assignment01;
+package edu.gmu.cs.swe619.assignments.assignment01;
 
 import java.util.Arrays;
 import java.util.List;
