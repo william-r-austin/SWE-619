@@ -24,7 +24,7 @@ public class FindPrimeFactor {
 			Integer aInt = a.get(index);
 			Integer bInt = b.get(index);
 			if(aInt != null && bInt != null) {
-				if(aInt % bInt == 0 && isPrime(bInt)) {
+				if(isPrime(bInt) && aInt % bInt == 0) {
 					return index;
 				}
 			}
@@ -32,12 +32,14 @@ public class FindPrimeFactor {
 		
 		return -1;
 	}
-	
+
+	// Requires: x not null
+	//           
+	// Effects: return whether x is prime (true / false)
+	// 
+	// E.g. isPrime(2) = true, isPrime(3) = true, isPrime(4) = false, etc.
+	// 0, 1, and all negative integers are considered to be non-prime.
 	public static boolean isPrime(Integer x) {
-		if(x == null) {
-			return false;
-		}
-		
 		if(x < 2) {
 			return false;
 		}

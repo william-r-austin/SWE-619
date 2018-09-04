@@ -54,6 +54,35 @@ public class FindPrimeFactorTest {
 		int result = FindPrimeFactor.findPrimeFactor(y, x);
 		Assert.assertEquals(-1, result);
 	}
+	
+	@Test 
+	public void testNegativeNumbers() {
+		List<Integer> x = Arrays.asList(12, -14, 20);
+		List<Integer> y = Arrays.asList(4, 7, 5);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(1, result); 
+	}
+	
+	@Test 
+	public void testZeroFactors() {
+		List<Integer> x = Arrays.asList(0, 0);
+		List<Integer> y = Arrays.asList(4, 7);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(1, result); 
+	}
+	
+	@Test
+	public void testSameNumber() {
+		List<Integer> x = Arrays.asList(10, 11, 2, 6, 0, -2, 3);
+		List<Integer> y = Arrays.asList(3, 5, 4, 6, 0, -2, 3);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(6, result); 
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testNullPrime() {
+		FindPrimeFactor.isPrime(null);
+	}
 
 	
 	@Test
