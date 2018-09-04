@@ -96,6 +96,14 @@ public class FindPrimeFactorTest {
 	}
 	
 	@Test
+	public void testDifferentSizeLists3() {
+		List<Integer> x = Arrays.asList(3, 5, 10, 6, 0, -2, 3, -99);
+		List<Integer> y = Arrays.asList(2, 1, 5);
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(2, result); 
+	}
+	
+	@Test
 	public void testNullElements() {
 		List<Integer> x = Arrays.asList(3, null, 10, 6, 35, 28, 3);
 		List<Integer> y = Arrays.asList(2, 0, null, 4, 5, 2);

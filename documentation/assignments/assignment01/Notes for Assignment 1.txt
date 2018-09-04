@@ -1,0 +1,26 @@
+Notes for Assignment 1 - Complete FindPrimeFactor code.
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. We list our additional assumptions below.
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to
+  test it. There are no external dependencies.
+  
+* The JUnit tests are provided for the sake of completeness. We understand that they will not be graded.
+
+* We follow the instructions provided in the given preconditions. For example, it is stated explicitly that
+  the lists may not be null, so we do not check this in our code. However, we do provide a test to document the
+  behavior.
+
+* The prime numbers are 2, 3, 5, 7, etc. We have created a separate helper method for primality testing and created
+  separate tests for it.
+
+* As stated in the specification, the lists may be different lengths. We provide tests to check this functionality.
+
+* We do not disallow the first array from containing 0 and negative numbers. Every number is a factor of zero,
+  and therefore every prime number is as well. We also assume that negative numbers can have prime numbers as a
+  factor. For example, -15 % 3 = 0, so our code will detect this. There are tests for both cases.
+  
+* -1 is returned if the inputs do not meet the given conditions. This includes the case of one or both empty
+  lists. Again, tests are provided.
