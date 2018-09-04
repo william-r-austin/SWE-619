@@ -18,14 +18,6 @@ public class FindPrimeFactor {
 	//  third index is not the least index with the desired property.)
 	// Also note that a[] and b[] need not be of the same length.
 	public static int findPrimeFactor(List<Integer> a, List<Integer> b) {
-		if(a == null) {
-			throw new IllegalArgumentException("List 'a' may not be null.");
-		}
-		
-		if(b == null) {
-			throw new IllegalArgumentException("List 'b' may not be null.");
-		}
-		
 		int stopIndex = Math.min(a.size(), b.size());
 		
 		for(int index = 0; index < stopIndex; index++) {

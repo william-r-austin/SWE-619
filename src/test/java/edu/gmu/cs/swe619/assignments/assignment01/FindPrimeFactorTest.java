@@ -1,12 +1,11 @@
 package edu.gmu.cs.swe619.assignments.assignment01;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import edu.gmu.cs.swe619.assignments.assignment01.FindPrimeFactor;
 
 public class FindPrimeFactorTest {
 	
@@ -26,6 +25,34 @@ public class FindPrimeFactorTest {
 		
 		int result = FindPrimeFactor.findPrimeFactor(a, b);
 		Assert.assertEquals(1, result);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testNull1() {
+		List<Integer> x = Arrays.asList(2, 4, 6);
+		FindPrimeFactor.findPrimeFactor(x, null);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testNull2() {
+		List<Integer> x = Arrays.asList(2, 4, 6);
+		FindPrimeFactor.findPrimeFactor(null, x);
+	}
+	
+	@Test
+	public void testEmptyList1() {
+		List<Integer> x = Arrays.asList(1, 2, 3);
+		List<Integer> y = new ArrayList<>();
+		int result = FindPrimeFactor.findPrimeFactor(x, y);
+		Assert.assertEquals(-1, result);
+	}
+	
+	@Test
+	public void testEmptyList2() {
+		List<Integer> x = Arrays.asList(1, 2, 3);
+		List<Integer> y = new ArrayList<>();
+		int result = FindPrimeFactor.findPrimeFactor(y, x);
+		Assert.assertEquals(-1, result);
 	}
 
 	
