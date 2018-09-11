@@ -24,7 +24,7 @@ public class FindPrimeFactor {
 	 *           that matches the element at the same index in list b 
 	 * @param b  list of integers, one of which must be prime and a factor
 	 *           of the 
-	 * @return  the least index that 
+	 * @return  the least index i, for which b[i] is a prime factor of a[i] 
 	 * @throws NullPointerException  if either input list (a or b) is null
 	 * @throws IllegalStateException  if there is no index i in the given lists
 	 *                                for which b[i] is a prime factor of a[i]

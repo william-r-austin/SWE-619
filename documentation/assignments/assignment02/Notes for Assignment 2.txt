@@ -1,0 +1,41 @@
+Notes for Assignment 2 - Modify the FindPrimeFactor code to convert preconditions to exceptions.
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. We list our additional assumptions below.
+
+* The given specification contains 3 preconditions:
+     1. a not null
+     2. b not null
+     3. there is some index i where b[i] is both prime and a factor of a[i]
+  
+  In the first assignment, we chose a minimal implementation that met the requirements to return the least
+  index whenever these preconditions were met. In other cases, we threw an NPE or returned -1, but this was not
+  required by the contract.
+  
+  Now, for this assignment, we use runtime exceptions to handle the cases when these preconditions are met. The
+  specific exceptions are documented in the javadoc for the findPrimeFactor() method. This allows the caller to
+  rely on defined behavior for both valid and invalid inputs.  
+
+* Each of these exceptional cases is documented and tested explicitly. We use Bloch's list of standard exceptions
+  to follow java best practices. More specifically:
+     1. A NullPointerException is thrown if either of the inputs is null. This covers preconditions 1 and 2.
+     2. An IllegalStateException is thrown if we cannot find a least index that satisfies the prime factor
+        requirements. This covers precondition 3. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to
+  test it. There are no external dependencies.
+  
+* The JUnit tests are provided for the sake of completeness. We understand that they will not be graded.
+
+* The prime numbers are 2, 3, 5, 7, etc. We have created a separate helper method for primality testing and created
+  separate tests for it.
+
+* As stated in the specification, the lists may be different lengths. We provide tests to check this functionality.
+
+* We do not disallow the first array from containing 0 and negative numbers. Every number is a factor of zero,
+  and therefore every prime number is as well. We also assume that negative numbers can have prime numbers as a
+  factor. For example, -15 % 3 = 0, so our code will detect this. There are tests for both cases.
+
+* We also allow both of the lists to contain null elements. Obviously, this will not be a valid index for the least index
+  prime factor, but it does not prevent a least index from being found later in the list. Again, JUnit tests are provided.

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class FindPrimeFactorTest {
 	@Test
-	public void testExample1() {
+	public void testFromSpecification() {
 		List<Integer> a = Arrays.asList(12, 25, 18, 8);
 		List<Integer> b = Arrays.asList(6, 2, 3, 2);
 		
@@ -18,7 +18,7 @@ public class FindPrimeFactorTest {
 	}
 	
 	@Test
-	public void testExample2() {
+	public void testExample1() {
 		List<Integer> a = Arrays.asList(2, 4, 6);
 		List<Integer> b = Arrays.asList(1, 2, 3);
 		
@@ -38,20 +38,18 @@ public class FindPrimeFactorTest {
 		FindPrimeFactor.findPrimeFactor(null, x);
 	}
 	
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void testEmptyList1() {
 		List<Integer> x = Arrays.asList(1, 2, 3);
 		List<Integer> y = new ArrayList<>();
-		int result = FindPrimeFactor.findPrimeFactor(x, y);
-		Assert.assertEquals(-1, result);
+		FindPrimeFactor.findPrimeFactor(x, y);
 	}
 	
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void testEmptyList2() {
 		List<Integer> x = Arrays.asList(1, 2, 3);
 		List<Integer> y = new ArrayList<>();
-		int result = FindPrimeFactor.findPrimeFactor(y, x);
-		Assert.assertEquals(-1, result);
+		FindPrimeFactor.findPrimeFactor(y, x);
 	}
 	
 	@Test 
@@ -78,20 +76,18 @@ public class FindPrimeFactorTest {
 		Assert.assertEquals(6, result); 
 	}
 	
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void testDifferentSizeLists1() {
 		List<Integer> x = Arrays.asList(1);
 		List<Integer> y = Arrays.asList(3, 5, 4, 6, 0, -2, 3);
-		int result = FindPrimeFactor.findPrimeFactor(x, y);
-		Assert.assertEquals(-1, result); 
+		FindPrimeFactor.findPrimeFactor(x, y);
 	}
 	
-	@Test
+	@Test(expected = IllegalStateException.class)
 	public void testDifferentSizeLists2() {
 		List<Integer> x = Arrays.asList(3, 5, 10, 6, 0, -2, 3);
 		List<Integer> y = Arrays.asList(2, 3);
-		int result = FindPrimeFactor.findPrimeFactor(x, y);
-		Assert.assertEquals(-1, result); 
+		FindPrimeFactor.findPrimeFactor(x, y);
 	}
 	
 	@Test
