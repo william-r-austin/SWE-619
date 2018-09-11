@@ -5,25 +5,31 @@ import java.util.List;
 public class FindPrimeFactor {
 	
 	/**
+	 * Private constructor, to prevent instantiation.
+	 */
+	private FindPrimeFactor() {}
+	
+	/**
 	 * Finds the least index at which b[i] is a prime factor of a[i]. 
 	 * <p>
 	 * Note that a[] and b[] need not be of the same length. 
 	 * <p>
-	 * Example 1: findPrimeFactor ([12, 25, 18, 8], [6, 2, 3, 2]) = 2
+	 * Example 1: findPrimeFactor ([12, 25, 18, 8], [6, 2, 3, 2]) = 2.
 	 * Note that 6 is a factor of 12, but is not prime, and 2 is prime, 
 	 * but is not a factor of 25.  However, 3 is a prime factor of 18. 
 	 * Hence, index "2" is the correct answer.  index "3" is not a possible 
 	 * answer, because the third index is not the least index with the 
 	 * desired property.
 	 * <p>
-	 * Example 2: findPrimeFactor([12, 15, 24], [4, 2, 1]) => IllegalStateException
+	 * Example 2: findPrimeFactor([12, 15, 24], [4, 2, 1]) results in
+	 * IllegalStateException.
 	 * In this case, 12 is divisible by 4, but it is not prime. 15 is not
 	 * divisible by 2, and 1 is not prime.
 	 *  	  
 	 * @param a  list of integers, one of which must have a prime factor 
 	 *           that matches the element at the same index in list b 
 	 * @param b  list of integers, one of which must be prime and a factor
-	 *           of the 
+	 *           of the element in list a at the same index
 	 * @return  the least index i, for which b[i] is a prime factor of a[i] 
 	 * @throws NullPointerException  if either input list (a or b) is null
 	 * @throws IllegalStateException  if there is no index i in the given lists
