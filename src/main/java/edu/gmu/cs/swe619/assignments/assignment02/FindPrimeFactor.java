@@ -66,7 +66,7 @@ public class FindPrimeFactor {
 	 * This method uses the standard rules for computing primality. 0, 1, and
 	 * all negative numbers are considered to be non-prime.
 	 * @param x  the number to test for primality
-	 * @return  whether x is prime (true / false)
+	 * @return  true if x is a prime number, false otherwise
 	 * @throws NullPointerException  if x is null
 	 */
 	public static boolean isPrime(Integer x) {
