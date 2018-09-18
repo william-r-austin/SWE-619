@@ -59,6 +59,7 @@ public final class GrowList<E> {
 	 * 
 	 * @param i  the index in the list to retrieve an element from
 	 * @return   the element in the GrowList at index i
+	 * @throws   IndexOutOfBoundsException  if the given index is not valid
 	 */
 	public E get(int i) {
 		if (!inRange(i)) {
@@ -72,9 +73,9 @@ public final class GrowList<E> {
 	 * 
 	 * @param i  the index in the GrowList to replace
 	 * @param o  the new object to save in the GrowList 
-	 * @return   a new GrowList that is a copy of the 
-	 *           original GrowList, with the specified 
-	 *           element replaced
+	 * @return   a new GrowList that is a copy of the original GrowList, with 
+	 *           the specified element replaced
+	 * @throws   IndexOutOfBoundsException  if the given index is not valid 
 	 */
 	public GrowList<E> set(int i, E o) {
 		if (!inRange(i)) {
@@ -131,10 +132,13 @@ public final class GrowList<E> {
 	public static void main(String[] args) {
 		GrowList<String> list = new GrowList<String>();
 		System.out.println("list is: " + list);
+		
 		list = list.add("cat");
 		System.out.println("list is: " + list);
+		
 		list = list.add("dog");
 		System.out.println("list is: " + list);
+		
 		list = list.set(1, "bat");
 		System.out.println("list is: " + list);
 	}
