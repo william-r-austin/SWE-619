@@ -30,13 +30,14 @@ public final class GrowList<E> {
 	 *                        representation of the new GrowList
 	 */
 	private GrowList(Map<Integer, E> existingValues) {
-		this.values = new HashMap<Integer, E>(existingValues);
+		values = new HashMap<Integer, E>(existingValues);
 	}
 
 	/**
 	 * Add to the end of the list
 	 * 
 	 * @param o  the new element
+	 * @return   a new GrowList, with the new element added at the end
 	 */
 	public GrowList<E> add(E o) {
 		GrowList<E> newList = new GrowList<E>(values);

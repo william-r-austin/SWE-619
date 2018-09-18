@@ -1,0 +1,18 @@
+Notes for Assignment 3 - Modify the GrowList class to be immutable.
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. Some notes about the assignment are below. 
+
+* A summary of the changes is below:
+    1. Change the add() method from a mutator to a producer.
+    2. Change the set() method from a mutator to a producer. Because the set method returns a value, we would usually
+       need to create a producer method and an observer method. However, the observer method is get(), and it already exists. 
+
+* The JUnit tests have been created to test our implementation. They cover the public API for GrowList, but they are not completely 
+  exhaustive.
+
+* We allow the GrowList to contain null elements. We have provided an associated JUnit test for this scenario. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to test it. There are no 
+  external dependencies.
