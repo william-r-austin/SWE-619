@@ -23,6 +23,7 @@ public class GrowList <E> {
 	
 	/**
 	 * Add to the end of the list
+	 * 
 	 * @param o  the new element to add to the list
 	 * @throws   RuntimeException  if the rep invariant is violated
 	 */
@@ -36,6 +37,7 @@ public class GrowList <E> {
 	
 	/**
 	 * Number of elements in list
+	 * 
 	 * @return  size of the list
 	 */
 	public int size() {
@@ -44,6 +46,7 @@ public class GrowList <E> {
 
 	/**
 	 * Get ith value in list
+	 * 
 	 * @param  i  the index to retrieve an element from
 	 * @return    the element at index i
 	 * @throws    IndexOutOfBoundsException  if index i is not valid

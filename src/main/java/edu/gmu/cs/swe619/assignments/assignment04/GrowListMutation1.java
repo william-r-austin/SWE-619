@@ -23,6 +23,7 @@ public class GrowListMutation1 <E> {
 	
 	/**
 	 * Add to the end of the list
+	 * 
 	 * @param o  the new element to add to the list
 	 * @throws   RuntimeException  if the rep invariant is violated
 	 */
@@ -36,6 +37,7 @@ public class GrowListMutation1 <E> {
 	
 	/**
 	 * Number of elements in list
+	 * 
 	 * @return  size of the list
 	 */
 	public int size() {
@@ -58,6 +60,9 @@ public class GrowListMutation1 <E> {
 	
 	/**
 	 * Update ith value in list
+	 * <p>
+	 * <b>NOTE: This method contains a mutation that makes it incorrect because the validity
+	 * of the index is not checked!!</b>
 	 * 
 	 * @param i  index of element to replace
 	 * @param o  new element to save at index i

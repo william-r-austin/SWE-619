@@ -23,6 +23,10 @@ public class GrowListMutation2 <E> {
 	
 	/**
 	 * Add to the end of the list
+	 * <p>
+	 * <b>NOTE: This method contains a mutation that makes it incorrect because the element is not
+	 * actually added to the list!!</b>
+	 * 
 	 * @param o  the new element to add to the list
 	 * @throws   RuntimeException  if the rep invariant is violated
 	 */
