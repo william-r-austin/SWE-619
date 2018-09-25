@@ -7,13 +7,13 @@ import java.util.Set;
 /**
  * GrowList is a mutable list that only gets longer.
  */
-public class GrowList <E> {
+public class GrowListMutation1 <E> {
 	private Map<Integer, E> values;
 	
 	/**
 	 * Create a new GrowList
 	 */
-	public GrowList() {
+	public GrowListMutation1() {
 		values = new HashMap<Integer, E>();
 		
 		if(!repOk()) {
@@ -68,9 +68,12 @@ public class GrowList <E> {
 	public E set(int i, E o) {
 		E result = null;
 		
-		if(!inRange(i)) {
-			throw new IndexOutOfBoundsException("GrowList.set: Index out of bounds");
-		}
+		/******************************************
+		 * Mutation 1: Removed range check for set!!
+		   if(!inRange(i)) {
+			   throw new IndexOutOfBoundsException("GrowList.set: Index out of bounds");
+		   }
+		*******************************************/
 		
 		result = values.put(i, o);
 		

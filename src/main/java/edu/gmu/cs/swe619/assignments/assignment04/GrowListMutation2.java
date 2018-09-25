@@ -7,13 +7,13 @@ import java.util.Set;
 /**
  * GrowList is a mutable list that only gets longer.
  */
-public class GrowList <E> {
+public class GrowListMutation2 <E> {
 	private Map<Integer, E> values;
 	
 	/**
 	 * Create a new GrowList
 	 */
-	public GrowList() {
+	public GrowListMutation2() {
 		values = new HashMap<Integer, E>();
 		
 		if(!repOk()) {
@@ -27,7 +27,10 @@ public class GrowList <E> {
 	 * @throws   RuntimeException  if the rep invariant is violated
 	 */
 	public void add(E o) {
-		values.put(size(), o);
+		/******************************************
+		 * Mutation 2: Removed code to add the element in the list!!
+		   values.put(size(), o);
+		 *******************************************/
 		
 		if(!repOk()) {
 			throw new RuntimeException("GrowList.add: Rep invariant violation");
@@ -71,7 +74,7 @@ public class GrowList <E> {
 		if(!inRange(i)) {
 			throw new IndexOutOfBoundsException("GrowList.set: Index out of bounds");
 		}
-		
+
 		result = values.put(i, o);
 		
 		if(!repOk()) {
