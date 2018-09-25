@@ -1,0 +1,43 @@
+Notes for Assignment 4 - Implement repOk() for the GrowList class, and explore the statement deletion operator.
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. Some notes about the assignment are below. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to test it. 
+  There are no external dependencies.
+
+* We have used the provided implementation for GrowList, but taken liberty to format it conveniently. As before, we allow 
+  the GrowList to contain null elements. There are associated JUnit tests for this scenario.
+
+* The JUnit tests have been created to test the GrowList class, and are based off of our tests from Assignment #3. They 
+  cover the public API for GrowList, but they are not completely exhaustive.
+  
+* This submission for Assignment #4 is broken into 3 sections, outlined below:
+
+  1. The base implementation for the GrowList class. We provide the following files:
+     a) GrowList.java: the implementation for the class
+     b) GrowListTest.java: the junit tests for the class
+     c) GrowList.pdf: the javadocs for the class, in pdf format
+     d) GrowListTest - Results.png: a screenshot of the junit results. In this case, everything passes.
+     
+  2. The GrowList class with a mutation that violates the rep invariant. The mutation is in the set() method, and we remove
+     the index validity check. Therefore, when we set an element at index -1, the rep invariant is violated, and it is caught
+     in our junit test, as shown in the associated screenshot. We provide the following files:
+     a) GrowListMutation1.java: the implementation for the class, containing the statement deletion in the set() method 
+     b) GrowListMutation1Test.java: the junit tests for the class. Several of them fail, due to contract violations and rep
+                                    invariant violations.
+     c) GrowListMutation1.pdf: the javadocs for the class, in pdf format. The mutation is noted here.
+     d) GrowListMutation1Test - Results.png: a screenshot of the junit results. In this case, we show how a junit test fails when
+                                             the rep invariant is violated.     
+
+  3. An additional GrowList class with a different mutation. In this case, the mutation is in the add() method, and we remove
+     the the code that actually inserts into the list. Note that this does _NOT_ violate the rep invariant, because the removal of 
+     statement does not cause the state to be altered in an illegal way. However, it does cause contract violations. We provide 
+     the following files:
+     a) GrowListMutation2.java: the implementation for the class, containing the statement deletion in the add() method 
+     b) GrowListMutation2Test.java: the junit tests for the class. Several of them fail, due to contract violations. However, the rep 
+                                    invariant is never violated due to this change.
+     c) GrowListMutation2.pdf: the javadocs for the class, in pdf format. The mutation is noted here.
+     d) GrowListMutation2Test - Results.png: a screenshot of the junit results. In this case, we show how a junit test fails when
+                                             the contract is violated.
