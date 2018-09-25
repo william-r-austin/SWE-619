@@ -22,7 +22,7 @@ public class GrowListMutation2 <E> {
 	}
 	
 	/**
-	 * Add to the end of the list
+	 * Add to the end of the list, <b> contains a mutation.</b>
 	 * <p>
 	 * <b>NOTE: This method contains a mutation that makes it incorrect because the element is not
 	 * actually added to the list!!</b>

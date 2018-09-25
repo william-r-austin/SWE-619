@@ -59,7 +59,7 @@ public class GrowListMutation1 <E> {
 	}
 	
 	/**
-	 * Update ith value in list
+	 * Update ith value in list, <b> contains a mutation.</b>
 	 * <p>
 	 * <b>NOTE: This method contains a mutation that makes it incorrect because the validity
 	 * of the index is not checked!!</b>
