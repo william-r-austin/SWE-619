@@ -1,0 +1,24 @@
+Notes for Assignment 5 - Modify the GrowList class to implement the Iterable interface.
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. Some notes about the assignment are below. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to test it. 
+  There are no external dependencies.
+
+* We have used the provided implementation for GrowList, but taken liberty to format it conveniently. As before, we allow 
+  the GrowList to contain null elements. There are associated JUnit tests for this scenario.
+
+* The JUnit tests have been created to test the GrowList class, and are based off of our tests from Assignments #3 and #4. They 
+  cover the public API for GrowList, but they are not completely exhaustive. All of the tests for 
+  
+* After visiting the contract for the GrowList class, we have concluede that the remove() method of the iterator must
+  throw an UnsupportedOperationException. If this operation were allowed, the list would decrease in size, which is not allowed. 
+  Therefore, our javadoc and JUnits show this behavior.
+
+* As a side effort, we have implemented another version of the class, called GrowListWithRemove that fully implements the remove()
+  operation. This allowed us to further investigate some of the challenges to producing a correct implementation for the full set
+  of methods included in the Iterator interface. JUnits are provided.
+  
+* Our submission includes java source files, a test (JUnit) file for each source file, JUnit output, and javadocs.

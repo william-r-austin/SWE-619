@@ -7,9 +7,12 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
- * GrowList is a mutable list that only gets longer.
+ * GrowListWithRemove is a mutable list that only gets longer.
+ * <p>
+ * However, it has been modified to allow the remove() method
+ * of the iterator to work as intended by the Iterable spec.
  */
-public class GrowList <E> implements Iterable<E> {
+public class GrowListWithRemove <E> implements Iterable<E> {
 	
 	/**
 	 * Map to hold values in the list
@@ -17,9 +20,9 @@ public class GrowList <E> implements Iterable<E> {
 	private Map<Integer, E> values;
 	
 	/**
-	 * Create a new GrowList
+	 * Create a new GrowListWithRemove
 	 */
-	public GrowList() {
+	public GrowListWithRemove() {
 		values = new HashMap<Integer, E>();
 		
 		if(!repOk()) {
@@ -140,27 +143,34 @@ public class GrowList <E> implements Iterable<E> {
 	}
 	
 	/**
-	 * Returns a new iterator for the list.
+	 * Returns a new iterator for the list. 
 	 * <p>
-	 * The remove() method <b>IS NOT</b> supported in this implementation.
+	 * The remove() method <b>IS</b> supported in this implementation.
 	 * 
 	 * @return  a reference to the new iterator object
 	 */
 	@Override
 	public Iterator<E> iterator() {
-		return new GrowListIterator();
+		return new GrowListWithRemoveIterator();
 	}
 	
 	/**
 	 * Inner class representing an iterator for the GrowList object.
 	 *
 	 */
-	private class GrowListIterator implements Iterator<E> {
+	private class GrowListWithRemoveIterator implements Iterator<E> {
 		/**
 		 * Holds the index in the map of the next element to be returned by the iterator
 		 * when next() is called.
 		 */
 		private Integer nextElementIndex = 0;
+		
+		/**
+		 * Holds the index of the last element returned by next(). This is the element
+		 * that will be removed from the GrowList if the client invokes the remove()
+		 * method.
+		 */
+		private Integer lastElementIndex = null;
 		
 		/**
 		 * Tests whether the iterator has more elements to return
@@ -187,20 +197,38 @@ public class GrowList <E> implements Iterable<E> {
 			}
 			
 			E nextElement = values.get(nextElementIndex);
+			lastElementIndex = nextElementIndex;
 			nextElementIndex++;
 			return nextElement;
 		}
 		
 		/**
-		 * Not supported. Removing elements would cause our GrowList to decrease in size, violating our
-		 * class contract.
+		 * Delete the last element returned by the next() method from the GrowList
 		 * 
-		 * @throws  UnsupportedOperationException
+		 * @throws  IllegalStateException  if the user calls this method without a preceding call to next()
 		 * @see     java.util.Iterator#remove()
 		 */
 		@Override
 		public void remove() {
-			throw new UnsupportedOperationException("GrowListIterator.remove: A GrowList may only increase in size, so removal is not allowed.");
+			if(lastElementIndex != null) {
+				Integer i = lastElementIndex;
+				while(i < size() - 1) {
+					E nextElement = values.get(i + 1);
+					values.put(i, nextElement);
+					i++;
+				}
+				values.remove(size() - 1);
+				
+				nextElementIndex = lastElementIndex;
+				lastElementIndex = null;
+			}
+			else {
+				throw new IllegalStateException("GrowListIterator.remove: Invalid state.");
+			}
+			
+			if(!repOk()) {
+				throw new RuntimeException("GrowListIterator.remove: Rep invariant violation");
+			}
 		}
 		
 	}
@@ -211,7 +239,7 @@ public class GrowList <E> implements Iterable<E> {
 	 * @param args  command line arguments
 	 */
 	public static void main(String[] args) {
-		GrowList<String> list = new GrowList<String>();
+		GrowListWithRemove<String> list = new GrowListWithRemove<String>();
 		
 		System.out.println("list is:" + list);
 		list.add("cat");

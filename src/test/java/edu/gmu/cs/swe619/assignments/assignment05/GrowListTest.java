@@ -158,7 +158,7 @@ public class GrowListTest {
 		growList.iterator().next();
 	}
 	
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = UnsupportedOperationException.class)
 	public void testRemoveEmpty() {
 		GrowList<Double> growList = new GrowList<Double>();
 		growList.iterator().remove();
@@ -181,7 +181,7 @@ public class GrowListTest {
 		Assert.assertEquals(false, iter.hasNext());
 	}
 	
-	@Test
+	@Test(expected = UnsupportedOperationException.class)
 	public void testRemoveSingleElement() {
 		GrowList<String> growList = new GrowList<String>();		
 		growList.add("To be deleted");
@@ -191,37 +191,10 @@ public class GrowListTest {
 		Assert.assertEquals(true, iter.hasNext());
 		Assert.assertEquals("To be deleted", iter.next());
 		iter.remove();
-		Assert.assertEquals(false, iter.hasNext());
-		Assert.assertEquals(0, growList.size());
 	}
-	
-	@Test
-	public void testRemoveMultipleElements() {
-		GrowList<String> growList = new GrowList<String>();		
-		growList.add("To be deleted 0");
-		growList.add("To be deleted 1");
-		growList.add("To be deleted 2");
-		growList.add("To be deleted 3");
-		growList.add("To be deleted 4");
-		Iterator<String> iter = growList.iterator();
 		
-		int size = 5;
-		Assert.assertEquals(size, growList.size());
-		int elementNumber = 0;
-		while(iter.hasNext()) {
-			String element = iter.next();
-			Assert.assertEquals("To be deleted " + elementNumber, element);
-			iter.remove();
-			elementNumber++;
-			size--;
-			Assert.assertEquals(size, growList.size());
-		}
-		Assert.assertEquals(false, iter.hasNext());
-		Assert.assertEquals(0, growList.size());
-	}
-	
-	@Test(expected = IllegalStateException.class)
-	public void testIllegalStateRemove() {
+	@Test(expected = UnsupportedOperationException.class)
+	public void testMultiElementRemove() {
 		GrowList<Boolean> growList = new GrowList<Boolean>();		
 		growList.add(false);
 		growList.add(true);
@@ -230,32 +203,7 @@ public class GrowListTest {
 		
 		iter.remove();
 	}
-	
-	@Test(expected = IllegalStateException.class)
-	public void testDoubleRemove() {
-		GrowList<Integer> growList = new GrowList<Integer>();		
-		growList.add(351);
-		growList.add(null);
-		growList.add(353);
-		Iterator<Integer> iter = growList.iterator();
-		
-		Assert.assertEquals(3, growList.size());
-		Assert.assertEquals(true, iter.hasNext());
-		Assert.assertEquals(351, iter.next().intValue());
-		iter.remove();
-		
-		Assert.assertEquals(2, growList.size());
-		Assert.assertEquals(true, iter.hasNext());
-		Assert.assertEquals(null, iter.next());
-		iter.remove();
-		
-		Assert.assertEquals(1, growList.size());
-		Assert.assertEquals(true, iter.hasNext());
-		// Did not call next()
-		iter.remove();
-	}
-	
-		
+			
 	@Test
 	public void testMultipleElementIterator() {
 		GrowList<String> growList = new GrowList<String>();
