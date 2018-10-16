@@ -1,0 +1,61 @@
+Notes for Assignment 6 - Complete the implementation of the Bag class and analyze the Properties Rule (Liskov 7.11).
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. Some notes about the assignment are below. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to test it. 
+  There are no external dependencies.
+
+* We have completed the implementation for the Bag class, using the initial code that was provided. We have not changed 
+  any of the given method signatures. There are JUnit tests for all class functionality, although they are not
+  exhaustive.
+  
+* We make the assumption that null elements are allowed in the Bag and are treated like any other data element. There is
+  a JUnit test provided to show this behavior.
+  
+* The initial implementation does not indicate that the remove() function should throw an exception or provide a return value.
+  Therefore, our code completes without modifying "this" if the requested element to be removed is not present. This behavior
+  is documented by our JUnit tests as well. However, one could imagine a version of this code that returned a boolean indicating 
+  if the operation had any effect or not.
+
+* The implementation of the size() method is not the trivial map.size() implementation. A Bag can contains multiple copies
+  of each key, so the map value represents a quantity. Therefore, we need to sum these values to know how many elements
+  are in the bag. This allows us to give the correct value even though the number of distinct elements is less than the
+  number of total elements, due to duplicates.
+  
+* Discussion of Liskov 7.11: The Bag class cannot be a subtype of Set. The Liskov question asks specifically about IntSet
+  and IntBag, but in general, a type representing a multiset may not be a subtype of a class representing a set. This is
+  not allowed due to the Substitution Principle, as discussed below:
+  
+  (1) In the case of the Signature Rule, the Bag class is type-compatible with the LiskovGenericSet class, so this is
+      acceptable.
+  
+  (2) For the Methods Rule, the user's expectation when calling all methods in the superclass must also be met when calling the
+      same methods in the subclass. For the Bag/IntBag example, the user expects the remove() method to remove the element from
+      the LiskovGenericSet/IntSet. However, if we were to replace the IntSet with IntBag, and call remove, this is no longer true.
+      More specifically, the following code may break if the supertype (IntSet) were replaced with the subtype (IntBag):
+      
+      IntSet myData = new IntSet();
+      myData.insert(5);
+      myData.insert(5);
+      myData.remove(5);
+      myData.isIn(5); // Always returns false, because sets do not have duplicates!!
+      
+      Now, replacing the code with the subtype, we have:
+      
+      IntBag myData = new IntBag();
+      myData.insert(5);
+      myData.insert(5);
+      myData.remove(5);
+      myData.isIn(5); // Always returns true, because duplicates are allowed in the bag!!
+      
+      This example shows how the Methods Rule is violated, so we should not considered IntBag to be a subtype of IntSet.   
+  
+  (3) For the Properties Rule, we must enforce that the subtype (Bag, in this case) adheres to all properties of its
+      supertype (Set). This is clearly not the case because sets may not contain duplicate elements and multisets can. 
+      Therefore, these are different data structures and should not share an inheritance hierarchy.   
+  
+* Our JUnit file contains 2 tests that show the examples above. They are testPropertiesRuleSet() and testPropertiesRuleBag().
+  
+* Our submission includes our java source file, a test (JUnit) file, JUnit output, and a javadoc.

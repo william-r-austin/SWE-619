@@ -10,6 +10,10 @@ import org.junit.Test;
 
 public class BagTest {
 	
+	/**
+	 * This JUnit shows that sets do not contain duplicates. Because of this, the remove() method is
+	 * guaranteed to remove the given element from the set.
+	 */
 	@Test
 	public void testPropertiesRuleSet() {
 		Set<Integer> testSet = new HashSet<Integer>();
@@ -23,6 +27,12 @@ public class BagTest {
 		Assert.assertFalse(testSet.contains(100));
 	}
 	
+	/**
+	 * This JUnit shows that multisets/bags can contain duplicates, and the remove() method will only
+	 * remove one copy of the given element from the data structure.
+	 * 
+	 * This behavior violates the Substitution Principle!!
+	 */	
 	@Test
 	public void testPropertiesRuleBag() {
 		Bag<Integer> testBag = new Bag<Integer>();
