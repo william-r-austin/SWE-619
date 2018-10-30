@@ -99,7 +99,6 @@ public class Bag<E> {
 	 * @return  arbitrary element of this
 	 * @throws  IllegalStateException if the bag is empty
 	 */
-
 	public E choose() {
 		if(map.isEmpty()) {
 			throw new IllegalStateException("Bag.choose: set is empty.");

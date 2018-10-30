@@ -1,0 +1,35 @@
+Notes for Assignment 7 - Polymorphic Abstraction
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. Some notes about the assignment are below. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to test it. 
+  There are no external dependencies.
+  
+* We have created the Indexer interface with the following 2 methods:
+    (1) public E get(int index)
+    (2) public int size()
+  
+  These 2 methods allow us to create an abstracted search routine, as found in the SearchUtility class. This search method conforms
+  to the signature specified in the assignment instructions.
+
+* For the second part of this problem (Liskov 8.9), we have created the ListIndexer class as a sample implementation for the Indexer interface. 
+
+* Most of our JUnits are in the following 2 files:
+    (1) ListIndexerTest.java: Tests basic functionality of the ListIndexer class, not including how it performs as part of a search.
+    (2) ListSearchTest.java:  Tests the SearchUtility.search() functionality, using ListIndexer as the chosen implementation. As required,
+                              we handle null elements and provide associated JUnits.
+
+* As you will notice, we provide 2 additional Indexer implementations. These are:
+    (1) CollectionIndexer.java: Indexer for any Java Collection object.
+          - Sample usage is in CollectionSearchTest.java. These tests are NOT meant to be exhaustive.
+    (2) StringIndexer.java: Indexer for String objects.
+          - Sample isage is in StringSearchTest.java. Again, these tests are NOT meant to be exhaustive.
+
+* As usual, we have provided javadocs and test output for our submission. Given the quantity of files for this assignment, we have organized our
+  submission into the following subdirectories:
+     (1) sourceJavaFiles/
+     (2) testJavaFiles/
+     (3) javadocFiles/
+     (4) junitOutput/
