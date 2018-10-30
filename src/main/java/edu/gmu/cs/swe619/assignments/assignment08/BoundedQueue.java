@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Generic BoundedQueue class representing a bounded queue for SWE-619, Assinment #8. This data
@@ -34,14 +33,15 @@ public class BoundedQueue<E> {
 	/**
 	 * Public constructor to create a new BoundedQueue object.
 	 * 
-	 * @param   size              the maximum number of elements that this queue may contain. We require this 
-	 *                            value to be strictly greater than 0, to match the original implementation.
+	 * @param   size              the maximum number of elements that this queue may contain. If the user
+	 *                            specifies a value of 0 or a negative value, an empty queue with a maximum
+	 *                            capacity of 0 will be initialized.
 	 * @throws  RuntimeException  if the rep invariant is violated.
 	 */
 	public BoundedQueue(int size) {
 		this.rep = new ArrayList<E>();
 		
-		if(size > 0) {
+		if(size >= 0) {
 			this.size = size;
 		}
 		else {
@@ -149,7 +149,7 @@ public class BoundedQueue<E> {
      * Adds all of the elements in the collection to this bounded queue, in the order specified by
      * the collection's default iterator. If this bounded queue becomes full (or already is full),
      * subsequent elements are skipped. 
-     *  
+     * 
      * @param  c                     the collection of elements to be added to the queue
      * @throws NullPointerException  if the collection to be added is null
      * @throws RuntimeException      if the rep invariant is violated
@@ -158,18 +158,32 @@ public class BoundedQueue<E> {
     	putAllImpl(c);
     	
 		if(!repOk()) {
-			throw new RuntimeException("BoundedQueue.put: Rep invariant violation.");
+			throw new RuntimeException("BoundedQueue.putAll: Rep invariant violation.");
 		}
     }
     
     /**
-     * Get all of the elements in this bounded queue as stored in a List. The caller is free
-     * to modify the result.
+     * Removes all elements from this bounded queue and returns them as a List. The list is ordered
+     * such that the oldest elements in the queue will be at the beginning of the list. Therefore, in
+     * the following 2 statements, x and y would refer to the same element.
+     * 
+     * 1. E x = boundedQueue.get();
+     * 2. E y = boundedQueue.getAll().get(0);
+     * 
+     * Note that a copy of the queue is made, so the caller is free to modify the result without changing
+     * changing the queue.
      * 
      * @return  a List containing a copy of the elements in the queue
+     * @throws  RuntimeException  if the rep invariant is violated
      */
     public List<E> getAll() {
     	List<E> listCopy = new ArrayList<>(rep);
+    	rep.clear();
+    	
+		if(!repOk()) {
+			throw new RuntimeException("BoundedQueue.getAll: Rep invariant violation.");
+		}
+    	
     	return listCopy;
     }
     
@@ -184,7 +198,7 @@ public class BoundedQueue<E> {
 	private boolean repOk() {
 		if(rep != null) {
 			int currentSize = rep.size();
-			return (currentSize >= 0 && currentSize <= size && size > 0);
+			return (currentSize >= 0 && currentSize <= size && size >= 0);
 		}
 		
 		return false;
@@ -194,7 +208,7 @@ public class BoundedQueue<E> {
 	 * Runs a simple test routine to show the basic BoundedQueue functionality. See the BoundedQueueTest
 	 * class for a full set of JUnit tests.
 	 * 
-	 * @param args arguments
+	 * @param args  CLI arguments
 	 */
     public static void main(String args[]) {
         BoundedQueue<Integer> queue = new BoundedQueue<>(10);

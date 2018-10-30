@@ -7,11 +7,11 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BoundedQueueTest {
+public class OriginalBoundedQueueTest {
 	
 	@Test
 	public void negativeSizeQueueTest() {
-		BoundedQueue<String> queue = new BoundedQueue<>(-1);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(-1);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(true, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -21,13 +21,13 @@ public class BoundedQueueTest {
 		Assert.assertEquals(true, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
 				
-		String x = queue.get();
+		Object x = queue.get();
 		Assert.assertNull(x);
 	}
 	
 	@Test
 	public void zeroSizeQueueTest() {
-		BoundedQueue<String> queue = new BoundedQueue<>(0);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(0);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(true, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -37,13 +37,13 @@ public class BoundedQueueTest {
 		Assert.assertEquals(true, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
 				
-		String x = queue.get();
+		Object x = queue.get();
 		Assert.assertNull(x);
 	}
 	
 	@Test
 	public void sizeOneQueueTest() {
-		BoundedQueue<String> queue = new BoundedQueue<>(1);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(1);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -53,7 +53,7 @@ public class BoundedQueueTest {
 		Assert.assertEquals(true, queue.isFull());
 		Assert.assertEquals(1, queue.getCount());
 				
-		String x = queue.get();
+		String x = (String) queue.get();
 		Assert.assertEquals("This is a test value.", x);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
@@ -62,7 +62,7 @@ public class BoundedQueueTest {
 	
 	@Test
 	public void sizeFiveQueueTest() {
-		BoundedQueue<Integer> queue = new BoundedQueue<>(5);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(5);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -75,7 +75,7 @@ public class BoundedQueueTest {
 		}
 		
 		for(int i = 1; i <= 10; i++) {
-			Integer x = queue.get();
+			Integer x = (Integer) queue.get();
 			
 			Assert.assertEquals(false, queue.isFull());
 			
@@ -94,86 +94,10 @@ public class BoundedQueueTest {
 			}
 		}
 	}
-	
-	@Test
-	public void putAllgetAllTest1() {
-		List<String> newStrings = Arrays.asList(new String[] {"x", "y", "z"});
 		
-		BoundedQueue<String> queue = new BoundedQueue<>(5);
-		Assert.assertEquals(true, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(0, queue.getCount());
-		
-		queue.putAll(newStrings);
-		Assert.assertEquals(false, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(3, queue.getCount());
-		
-		List<String> queueContents = queue.getAll();
-		Assert.assertEquals(true, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(0, queue.getCount());
-		Assert.assertEquals(newStrings, queueContents);
-	}
-	
-	@Test
-	public void putAllgetAllTest2() {
-		List<String> newStrings = Arrays.asList(new String[] {"x", "y", "z"});
-		
-		BoundedQueue<String> queue = new BoundedQueue<>(2);
-		Assert.assertEquals(true, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(0, queue.getCount());
-		
-		queue.put("a");
-		queue.put("b");
-		Assert.assertEquals(false, queue.isEmpty());
-		Assert.assertEquals(true, queue.isFull());
-		Assert.assertEquals(2, queue.getCount());
-				
-		queue.putAll(newStrings);
-		Assert.assertEquals(false, queue.isEmpty());
-		Assert.assertEquals(true, queue.isFull());
-		Assert.assertEquals(2, queue.getCount());
-		
-		List<String> queueContents = queue.getAll();
-		Assert.assertEquals(true, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(0, queue.getCount());
-		Assert.assertEquals(Arrays.asList(new String[] {"a", "b"}), queueContents);
-	}
-	
-	@Test
-	public void putAllgetAllTest3() {
-		List<String> newStrings = Arrays.asList(new String[] {"x", "y", "z"});
-		
-		BoundedQueue<String> queue = new BoundedQueue<>(5);
-		Assert.assertEquals(true, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(0, queue.getCount());
-		
-		queue.put("a");
-		queue.put("b");
-		queue.put("c");
-		Assert.assertEquals(false, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(3, queue.getCount());
-				
-		queue.putAll(newStrings);
-		Assert.assertEquals(false, queue.isEmpty());
-		Assert.assertEquals(true, queue.isFull());
-		Assert.assertEquals(5, queue.getCount());
-		
-		List<String> queueContents = queue.getAll();
-		Assert.assertEquals(true, queue.isEmpty());
-		Assert.assertEquals(false, queue.isFull());
-		Assert.assertEquals(0, queue.getCount());
-		Assert.assertEquals(Arrays.asList(new String[] {"a", "b", "c", "x", "y"}), queueContents);
-	}
-	
 	@Test
 	public void putNullElementsTest() {
-		BoundedQueue<Boolean> queue = new BoundedQueue<>(4);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(4);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -192,7 +116,11 @@ public class BoundedQueueTest {
 			Assert.assertEquals(i >= 4, queue.isFull());
 		}
 		
-		List<Boolean> queueContents = queue.getAll();
+		List<Boolean> queueContents = new ArrayList<>();
+		while(!queue.isEmpty()) {
+			queueContents.add((Boolean) queue.get()); 
+		}
+		
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -201,7 +129,7 @@ public class BoundedQueueTest {
 	
 	@Test
 	public void boundedQueueTest() {
-	    BoundedQueue<Integer> queue = new BoundedQueue<>(4);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(4);
 		Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
 		Assert.assertEquals(0, queue.getCount());
@@ -219,7 +147,7 @@ public class BoundedQueueTest {
 		List<Integer> removedElements = new ArrayList<>();
 	    
         while (!queue.isEmpty()) {
-            Integer queueElement = queue.get();
+            Integer queueElement = (Integer) queue.get();
             removedElements.add(queueElement);
         }
         
@@ -231,22 +159,22 @@ public class BoundedQueueTest {
 	
 	@Test
 	public void mixedTest() {
-	    BoundedQueue<Integer> queue = new BoundedQueue<>(3);
+		OriginalBoundedQueue queue = new OriginalBoundedQueue(3);
 	    List<Integer> removedElements = new ArrayList<>();
 		
 	    // null
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    queue.put(1);
 	    queue.put(2);
 	    
 	    // 1
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    queue.put(3);
 	    
 	    // 2
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    queue.put(4);
 	    queue.put(5);
@@ -256,24 +184,24 @@ public class BoundedQueueTest {
 	    queue.put(7);
 	    
 	    // 3
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    // 4
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    // 5
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    // null
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    queue.put(8);
 	    
 	    // 8
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	    
 	    // null
-	    removedElements.add(queue.get());
+	    removedElements.add((Integer) queue.get());
 	   	    
 	    Assert.assertEquals(true, queue.isEmpty());
 		Assert.assertEquals(false, queue.isFull());
