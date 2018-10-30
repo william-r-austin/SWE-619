@@ -172,6 +172,28 @@ public class BoundedQueueTest {
 	}
 	
 	@Test
+	public void putAllgetAllTest4() {
+		List<String> newStrings = Arrays.asList(new String[] {null, null, null});
+		
+		BoundedQueue<String> queue = new BoundedQueue<>(5);
+		Assert.assertEquals(true, queue.isEmpty());
+		Assert.assertEquals(false, queue.isFull());
+		Assert.assertEquals(0, queue.getCount());
+		
+		// Nothing added
+		queue.putAll(newStrings);
+		Assert.assertEquals(true, queue.isEmpty());
+		Assert.assertEquals(false, queue.isFull());
+		Assert.assertEquals(0, queue.getCount());
+		
+		List<String> queueContents = queue.getAll();
+		Assert.assertEquals(true, queue.isEmpty());
+		Assert.assertEquals(false, queue.isFull());
+		Assert.assertEquals(0, queue.getCount());
+		Assert.assertEquals(new ArrayList<String>(), queueContents);
+	}
+	
+	@Test
 	public void putNullElementsTest() {
 		BoundedQueue<Boolean> queue = new BoundedQueue<>(4);
 		Assert.assertEquals(true, queue.isEmpty());
@@ -247,6 +269,9 @@ public class BoundedQueueTest {
 	    
 	    // 2
 	    removedElements.add(queue.get());
+	    
+	    // Not added
+	    queue.put(null);
 	    
 	    queue.put(4);
 	    queue.put(5);

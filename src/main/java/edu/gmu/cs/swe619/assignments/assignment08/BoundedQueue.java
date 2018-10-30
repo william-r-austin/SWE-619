@@ -166,10 +166,12 @@ public class BoundedQueue<E> {
      * Removes all elements from this bounded queue and returns them as a List. The list is ordered
      * such that the oldest elements in the queue will be at the beginning of the list. Therefore, in
      * the following 2 statements, x and y would refer to the same element.
-     * 
+     * <pre>
+     * {@code
      * 1. E x = boundedQueue.get();
      * 2. E y = boundedQueue.getAll().get(0);
-     * 
+     * }
+     * </pre>
      * Note that a copy of the queue is made, so the caller is free to modify the result without changing
      * changing the queue.
      * 

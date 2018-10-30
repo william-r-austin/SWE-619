@@ -1,0 +1,51 @@
+Notes for Assignment 8 - Generic BoundedQueue implementation
+
+This assignment was completed by William Austin and Anzal Khan. We collaborated on the code by sharing a
+Github repository and discussing various aspects of the problem. Both of us contributed to the code, and
+associated JUnit tests. Some notes about the assignment are below. 
+
+* Our code is placed in the package that makes sense for our repository. You may need to copy it elsewhere to test it. 
+  There are no external dependencies.
+
+* We have updated the implementation for the BoundedQueue class, using the initial code that was provided. The array implementation
+  was updated to use a List instead. We have not changed any of the given method signatures. 
+
+* There are JUnit tests for all class functionality in the BoundedQueue class. These can be found in BoundedQueueTest.java.
+
+* We have kept the original implementation (provided as a starting point) of the BoundedQueue and renamed it to OriginalBoundedQueue. We
+  added some comments to explain the functionality as well. Lastly, we added OriginalBoundedQueueTest.java to show that the JUnit 
+  results for both versions of the class produce the same results. The JUnit tests for the original class do not cover the putAll() and getAll()
+  functionality because they were added to our new implementation as part of this assignment.
+  
+* The requirement to add getAll() and putAll() is somewhat open-ended. We took the following approach:
+  (1) For putAll(), we accept any type compatible Collection. Our implementation functions as if the user simply calls put() on every element
+      of the collection. Therefore, there are no guarantees that any elements from the collection are added if the queue is already full. Therefore,
+      depending on the remaining capacity and the size of the collection, all of the elements, some of the elements, or none of the elements may
+      be added to our queue. As usual, the null elements in the source collection are skipped. This is the same approach that we covered in our class
+      discussion last week.
+    
+      We have used a private method with an additional type parameter to provide this functionality. This allows us to get the iterator of the proper
+      type, and cut the operation short if the queue capacity is much smaller than the operation. We cannot do the equivalent with wildcards because
+      we cannot declare an object of type "? extends E".
+
+  (2) For getAll(), we return a type-compatible list containing the elements in the queue. In addition, we clear the queue. This means that calling
+      the putAll() operation is equivalent to the client calling get() on the queue until it is empty, and using the results to populate a List. Note
+      that the list we return from getAll() is a copy, so the user can modify it, as if they had initialized it themselves.
+
+* We have also implemented the repOk() function, as required. It is called any time our code changes the rep.
+
+* Our submission includes:
+  (1) Our 2 java source files:
+      - BoundedQueue.java
+      - OriginalBoundedQueue.java
+  (2) Our 2 JUnit test files:
+      - BoundedQueueTest.java
+      - OriginalBoundedQueueTest.java
+  (3) Our formatted javadoc output:
+      - BoundedQueue.pdf
+      - OriginalBoundedQueue.pdf    
+  (4) Our JUnit output:
+      - BoundedQueueTest - Results.png
+      - OriginalBoundedQueueTest - Results.png
+  (5) This file:
+      - Notes for Assignment 8.txt      

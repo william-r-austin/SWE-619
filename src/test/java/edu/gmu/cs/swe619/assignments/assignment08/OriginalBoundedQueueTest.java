@@ -176,6 +176,9 @@ public class OriginalBoundedQueueTest {
 	    // 2
 	    removedElements.add((Integer) queue.get());
 	    
+	    // Not added
+	    queue.put(null);
+	    
 	    queue.put(4);
 	    queue.put(5);
 	    
