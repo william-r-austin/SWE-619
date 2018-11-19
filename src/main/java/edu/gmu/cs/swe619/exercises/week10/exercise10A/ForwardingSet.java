@@ -79,6 +79,16 @@ public class ForwardingSet<E> implements Set<E> {
 	}
 	
 	@Override
+	public boolean equals(Object object) {
+		return s.equals(object);
+	}
+	
+	@Override
+	public int hashCode() {
+		return s.hashCode();
+	}
+	
+	@Override
 	public String toString() {
 		return s.toString();
 	}
