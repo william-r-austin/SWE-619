@@ -4,8 +4,21 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Wrapper class for the Map interface. Uses composition to store
+ * a reference to a user-specified map object, and then provides
+ * forwarding methods for all operations in the Map interface. This
+ * class is not meant to be extended, so it is marked as abstract. Rather,
+ * users should extend it and provide their own functionality in the subclass.
+ *
+ * @param <K>  the type of element for the keys in the map
+ * @param <V>  the type of element for the values in the map
+ */
 public abstract class ForwardingMap<K, V> implements Map<K, V> {
 
+	/**
+	 * Backing collection provided by the user.
+	 */
 	private final Map<K, V> map;
 	
 	public ForwardingMap(Map<K, V> source) {

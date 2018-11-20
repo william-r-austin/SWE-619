@@ -3,8 +3,20 @@ package edu.gmu.cs.swe619.assignments.assignment11;
 import java.util.Collection;
 import java.util.Iterator;
 
+/**
+ * Wrapper class for the Collection interface. Uses composition to store
+ * a reference to a user-specified collection object, and then provides
+ * forwarding methods for all operations in the Collection interface. This
+ * class is not meant to be extended, so it is marked as abstract. Rather,
+ * users should extend it and provide their own functionality in the subclass.
+ * 
+ * @param <E>  the type of elements to store in the collection
+ */
 public abstract class ForwardingCollection<E> implements Collection<E> {
 
+	/**
+	 * Backing collection provided by the user.
+	 */
 	private final Collection<E> collection;
 	
 	public ForwardingCollection(Collection<E> source) {

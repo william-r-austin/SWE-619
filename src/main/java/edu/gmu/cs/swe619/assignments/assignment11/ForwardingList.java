@@ -5,8 +5,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Wrapper class for the List interface. Uses composition to store
+ * a reference to a user-specified list object, and then provides
+ * forwarding methods for all operations in the List interface. This
+ * class is not meant to be extended, so it is marked as abstract. Rather,
+ * users should extend it and provide their own functionality in the subclass.
+ *
+ * @param <E>  the type of elements to store in the collection
+ */
 public abstract class ForwardingList<E> implements List<E> {
 
+	/**
+	 * Backing list provided by the user.
+	 */
 	private List<E> list;
 	
 	public ForwardingList(List<E> source) {
