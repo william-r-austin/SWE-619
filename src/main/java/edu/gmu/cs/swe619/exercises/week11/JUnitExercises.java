@@ -14,7 +14,7 @@ public class JUnitExercises {
 	public static Object[] x = {"ant", "bat", "cat"};
    
 	@DataPoints
-	public static Object[] y = {"ant", "bat", "cat"};
+	public static Object[] y = {"lion", "tiger", "bear"};
 	
 	@Theory
 	public void testEqualsSymmetry(Object x, Object y) {
